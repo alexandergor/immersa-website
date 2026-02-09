@@ -2,8 +2,8 @@ title: Immersa
 email: hello@immersa.dev
 description: >-
   The future of real estate presentation. Experience properties in immersive 3D.
-baseurl: "/immersa-website" # Empty for root domain
-url: "https://alexandergor.github.io" # Custom domain
+baseurl: "" # Empty for root domain
+url: "https://immersa.dev" # Custom domain
 
 markdown: GFM
 plugins:
