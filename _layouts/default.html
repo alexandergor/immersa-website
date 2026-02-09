@@ -87,10 +87,12 @@
 
     <script>
         // Mobile Menu Toggle
-        document.querySelector('.nav-toggle').addEventListener('click', function () {
-            const expanded = this.getAttribute('aria-expanded') === 'true';
-            this.setAttribute('aria-expanded', !expanded);
-            document.querySelector('.nav-menu').classList.toggle('is-open');
+        document.querySelectorAll('.nav-toggle').forEach(function(toggle) {
+            toggle.addEventListener('click', function () {
+                const expanded = this.getAttribute('aria-expanded') === 'true';
+                this.setAttribute('aria-expanded', !expanded);
+                document.querySelector('.nav-menu').classList.toggle('is-open');
+            });
         });
 
         // Custom Dropdown Functionality
