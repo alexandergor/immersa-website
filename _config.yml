@@ -10,6 +10,12 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
 
+# Add this collections section
+collections:
+  pages:
+    output: true
+    permalink: /:path/
+
 exclude:
   - Gemfile
   - Gemfile.lock

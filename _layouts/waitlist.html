@@ -28,14 +28,21 @@ layout: default
             </div>
 
             <div class="input-group">
-                <select name="role" required class="floating-select">
-                    <option value="" disabled selected></option>
-                    <option value="agent">{{ t.role_options.agent }}</option>
-                    <option value="broker">{{ t.role_options.broker }}</option>
-                    <option value="stager">{{ t.role_options.stager }}</option>
-                    <option value="other">{{ t.role_options.other }}</option>
-                </select>
-                <label class="floating-label">{{ t.role_label }}</label>
+                <div class="custom-select">
+                    <button type="button" class="select-trigger" aria-expanded="false" aria-haspopup="listbox">
+                        <span class="select-value placeholder">{{ t.role_label }}</span>
+                        <svg class="select-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
+                    </button>
+                    <div class="select-options" role="listbox">
+                        <div class="select-option" data-value="agent" role="option">{{ t.role_options.agent }}</div>
+                        <div class="select-option" data-value="broker" role="option">{{ t.role_options.broker }}</div>
+                        <div class="select-option" data-value="stager" role="option">{{ t.role_options.stager }}</div>
+                        <div class="select-option" data-value="other" role="option">{{ t.role_options.other }}</div>
+                    </div>
+                    <input type="hidden" name="role" required>
+                </div>
             </div>
 
             <input type="hidden" name="language" value="{{ page.lang }}">
