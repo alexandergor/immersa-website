@@ -221,6 +221,22 @@
                 var successDiv = document.getElementById('form-success');
                 var recaptchaResponseInput = form.querySelector('input[name="g-recaptcha-response"]');
                 
+                // Get translations based on page language
+                var pageLang = document.documentElement.lang || 'en';
+                var translations = {
+                    en: {
+                        verifying: 'Verifying...',
+                        sending: 'Sending...',
+                        error: 'Something went wrong. Please try again.'
+                    },
+                    he: {
+                        verifying: 'מאמת...',
+                        sending: 'שולח...',
+                        error: 'משהו לא נכון. נסה שוב.'
+                    }
+                };
+                var t = translations[pageLang] || translations.en;
+                
                 // Store original button text
                 if (!submitBtn.getAttribute('data-original-text')) {
                     submitBtn.setAttribute('data-original-text', submitBtn.textContent);
@@ -228,7 +244,7 @@
                 
                 // Disable submit button and show loading state
                 submitBtn.disabled = true;
-                submitBtn.textContent = 'Verifying...';
+                submitBtn.textContent = t.verifying;
                 
                 // Execute reCAPTCHA
                 if (typeof grecaptcha !== 'undefined') {
@@ -241,15 +257,12 @@
                             }
                             
                             // Update button text
-                            submitBtn.textContent = 'Sending...';
+                            submitBtn.textContent = t.sending;
                             
                             // Submit form
                             return fetch(form.action, {
                                 method: 'POST',
-                                body: formData,
-                                headers: {
-                                    'Accept': 'application/json'
-                                }
+                                body: formData
                             });
                         })
                         .then(function(response) {
@@ -260,28 +273,32 @@
                                     successDiv.style.display = 'block';
                                 }
                             } else {
-                                // Handle error
-                                submitBtn.disabled = false;
-                                submitBtn.textContent = submitBtn.getAttribute('data-original-text') || 'Submit';
-                                alert('Something went wrong. Please try again.');
+                                // Handle error - get error message from response
+                                return response.text().then(function(text) {
+                                    submitBtn.disabled = false;
+                                    submitBtn.textContent = submitBtn.getAttribute('data-original-text') || 'Submit';
+                                    try {
+                                        var errorData = JSON.parse(text);
+                                        alert(errorData.error || t.error);
+                                    } catch (e) {
+                                        alert(t.error + ' (' + response.status + ')');
+                                    }
+                                });
                             }
                         })
                         .catch(function(error) {
                             console.error('Error:', error);
                             submitBtn.disabled = false;
                             submitBtn.textContent = submitBtn.getAttribute('data-original-text') || 'Submit';
-                            alert('Something went wrong. Please try again.');
+                            alert(t.error);
                         });
                     });
                 } else {
                     // Fallback if reCAPTCHA not loaded
-                    submitBtn.textContent = 'Sending...';
+                    submitBtn.textContent = t.sending;
                     fetch(form.action, {
                         method: 'POST',
-                        body: formData,
-                        headers: {
-                            'Accept': 'application/json'
-                        }
+                        body: formData
                     })
                     .then(function(response) {
                         if (response.ok) {
@@ -290,16 +307,24 @@
                                 successDiv.style.display = 'block';
                             }
                         } else {
-                            submitBtn.disabled = false;
-                            submitBtn.textContent = submitBtn.getAttribute('data-original-text') || 'Submit';
-                            alert('Something went wrong. Please try again.');
+                            // Handle error - get error message from response
+                            return response.text().then(function(text) {
+                                submitBtn.disabled = false;
+                                submitBtn.textContent = submitBtn.getAttribute('data-original-text') || 'Submit';
+                                try {
+                                    var errorData = JSON.parse(text);
+                                    alert(errorData.error || t.error);
+                                } catch (e) {
+                                    alert(t.error + ' (' + response.status + ')');
+                                }
+                            });
                         }
                     })
                     .catch(function(error) {
                         console.error('Error:', error);
                         submitBtn.disabled = false;
                         submitBtn.textContent = submitBtn.getAttribute('data-original-text') || 'Submit';
-                        alert('Something went wrong. Please try again.');
+                        alert(t.error);
                     });
                 }
             });

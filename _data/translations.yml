@@ -14,6 +14,9 @@ en:
     submit_btn: "Get Early Access"
     success_title: "Welcome to Immersa"
     success_message: "Thanks! We'll be in touch."
+    verifying: "Verifying..."
+    sending: "Sending..."
+    error_message: "Something went wrong. Please try again."
   nav:
     home: "Home"
     about: "About"
@@ -42,6 +45,9 @@ he:
     submit_btn: "קבלו גישה מוקדמת"
     success_title: "ברוכים הבאים לאימרסה"
     success_message: "תודה! נהיה בקשר."
+    verifying: "מאמת..."
+    sending: "שולח..."
+    error_message: "משהו לא נכון. נסה שוב."
   nav:
     home: "בית"
     about: "אודות"
