@@ -58,7 +58,7 @@
                         {% if page.lang == 'en' %}
                         <a href="{{ '/he' | relative_url }}{{ page.url }}" class="lang-link">עברית</a>
                         {% else %}
-                        <a href="{{ page.url | remove: '/he' | remove: 'he/' | prepend: '/' }}"
+                        <a href="{{ page.url | remove: '/he' | remove: 'he/' }}"
                             class="lang-link">English</a>
                         {% endif %}
                     </li>
