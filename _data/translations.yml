@@ -1,0 +1,53 @@
+en:
+  form:
+    full_name_label: "Full Name"
+    full_name_placeholder: "Full Name"
+    email_label: "Work Email"
+    email_placeholder: "Work Email"
+    role_label: "Role"
+    role_placeholder: "Select Role"
+    role_options:
+      agent: "Real Estate Agent"
+      broker: "Broker"
+      stager: "Home Stager"
+      other: "Other"
+    submit_btn: "Get Early Access"
+    success_message: "Thanks! We'll be in touch."
+  nav:
+    home: "Home"
+    about: "About"
+    waitlist: "Waitlist"
+    toggle_menu: "Toggle menu"
+  about:
+    mission: "Our Mission"
+    stealth: "Immersa is currently operating in stealth mode."
+  footer:
+    rights: "All rights reserved."
+    stealth: "Stealth Mode Active"
+
+he:
+  form:
+    full_name_label: "שם מלא"
+    full_name_placeholder: "שם מלא"
+    email_label: "דוא״ל מקצועי"
+    email_placeholder: "דוא״ל מקצועי"
+    role_label: "תפקיד"
+    role_placeholder: "בחרו תפקיד"
+    role_options:
+      agent: "סוכן נדל״ן"
+      broker: "מתווך"
+      stager: "הום סטייג׳ר"
+      other: "אחר"
+    submit_btn: "קבלו גישה מוקדמת"
+    success_message: "תודה! נהיה בקשר."
+  nav:
+    home: "בית"
+    about: "אודות"
+    waitlist: "רשימת המתנה"
+    toggle_menu: "פתח תפריט"
+  about:
+    mission: "המשימה שלנו"
+    stealth: "אימרסה פועלת כרגע במצב סטלת'."
+  footer:
+    rights: "כל הזכויות שמורות."
+    stealth: "מצב סטלת' פעיל"

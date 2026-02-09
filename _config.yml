@@ -1,0 +1,25 @@
+title: Immersa
+email: hello@immersa.dev
+description: >-
+  The future of real estate presentation. Experience properties in immersive 3D.
+baseurl: "" # Empty for root domain
+url: "https://immersa.dev" # Custom domain
+
+markdown: GFM
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - .agent/
+  - agent-workflows/
+  - brand-brief*
+  - brand-identity*
+  - step-by-step-build.md

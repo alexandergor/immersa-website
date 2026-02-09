@@ -1,0 +1,47 @@
+---
+layout: default
+---
+
+<section class="waitlist-page"
+    style="min-height: 80vh; display: flex; align-items: center; background: linear-gradient(rgba(5, 5, 5, 0.85), rgba(5, 5, 5, 0.9)), url('{{ '/assets/images/bg-abstract-grid.png' | relative_url }}'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="container narrow-container">
+        <div class="text-center mb-5">
+            <h1 class="page-title gradient-text">{{ page.heroTitle }}</h1>
+            <p class="page-subtitle lead">{{ page.heroSubtitle }}</p>
+        </div>
+
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="waitlist-form glass-panel">
+            {% assign t = site.data.translations[page.lang].form %}
+
+            <div class="form-intro mb-4 text-center">
+                <p>{{ page.waitlistText }}</p>
+            </div>
+
+            <div class="input-group">
+                <input type="text" name="name" required placeholder=" " class="floating-input">
+                <label class="floating-label">{{ t.full_name_label }}</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" name="email" required placeholder=" " class="floating-input">
+                <label class="floating-label">{{ t.email_label }}</label>
+            </div>
+
+            <div class="input-group">
+                <select name="role" required class="floating-select">
+                    <option value="" disabled selected></option>
+                    <option value="agent">{{ t.role_options.agent }}</option>
+                    <option value="broker">{{ t.role_options.broker }}</option>
+                    <option value="stager">{{ t.role_options.stager }}</option>
+                    <option value="other">{{ t.role_options.other }}</option>
+                </select>
+                <label class="floating-label">{{ t.role_label }}</label>
+            </div>
+
+            <input type="hidden" name="language" value="{{ page.lang }}">
+            <input type="text" name="_gotcha" style="display:none">
+
+            <button type="submit" class="btn btn-primary btn-block">{{ t.submit_btn }}</button>
+        </form>
+    </div>
+</section>

@@ -1,0 +1,38 @@
+---
+layout: default
+---
+
+<section class="page-header">
+    <div class="container text-center">
+        <h1 class="page-title gradient-text">{{ page.founderTitle }}</h1>
+        <div class="divider-line"></div>
+    </div>
+</section>
+
+<section class="about-content">
+    <div class="container narrow-container">
+        <div class="glass-panel">
+            <div class="founder-story lead">
+                {{ page.founderBody | markdownify }}
+            </div>
+
+            <hr class="separator" style="border-color: rgba(255,255,255,0.05); margin: 2rem 0;">
+
+            {% assign about_t = site.data.translations[page.lang].about %}
+            <div class="mission-statement">
+                <h2 class="h3 gradient-text">{{ about_t.mission }}</h2>
+                <p>{{ page.missionText }}</p>
+            </div>
+
+            <div class="product-visual" style="margin-top: 2rem; text-align: center;">
+                <img src="{{ '/assets/images/about-product.png' | relative_url }}" alt="Immersa Platform Visualization"
+                    style="max-width: 100%; height: auto; border-radius: 12px; box-shadow: 0 10px 40px rgba(124, 58, 237, 0.3);">
+            </div>
+
+            <div class="stealth-disclaimer" style="margin-top: 2rem; opacity: 0.7; font-size: 0.9rem;">
+                <span class="icon">🔒</span>
+                <em>{{ about_t.stealth }}</em>
+            </div>
+        </div>
+    </div>
+</section>

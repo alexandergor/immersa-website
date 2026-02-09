@@ -1,0 +1,67 @@
+---
+layout: default
+---
+
+<section class="hero-section"
+    style="background: linear-gradient(rgba(5, 5, 5, 0.7), rgba(5, 5, 5, 0.85)), url('{{ '/assets/images/hero-bg.png' | relative_url }}'); background-size: cover; background-position: center; background-attachment: fixed;">
+    <div class="container hero-container text-center">
+        <h1 class="hero-title">
+            <span class="gradient-text">{{ page.heroTitle }}</span>
+        </h1>
+        <p class="hero-subtitle lead">{{ page.heroSubtitle }}</p>
+
+        <div class="hero-actions">
+            <a href="#waitlist-form" class="btn btn-primary">{{ page.ctaText }}</a>
+        </div>
+    </div>
+</section>
+
+<section class="problem-section">
+    <div class="container narrow-container">
+        <div class="glass-panel">
+            <h2 class="section-title">
+                {% if page.lang == 'he' %}האתגר{% else %}The Challenge{% endif %}
+            </h2>
+            <p class="problem-text">{{ page.problemText }}</p>
+        </div>
+    </div>
+</section>
+
+<section id="waitlist-form" class="waitlist-section">
+    <div class="container narrow-container">
+        <h2 class="section-title gradient-text">
+            {% if page.lang == 'he' %}הצטרפו לעתיד{% else %}Join the Future{% endif %}
+        </h2>
+        <p class="waitlist-text">{{ page.waitlistText }}</p>
+
+        <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="waitlist-form glass-panel">
+            {% assign t = site.data.translations[page.lang].form %}
+
+            <div class="input-group">
+                <input type="text" id="name" name="name" required placeholder=" " class="floating-input">
+                <label for="name" class="floating-label">{{ t.full_name_label }}</label>
+            </div>
+
+            <div class="input-group">
+                <input type="email" id="email" name="email" required placeholder=" " class="floating-input">
+                <label for="email" class="floating-label">{{ t.email_label }}</label>
+            </div>
+
+            <div class="input-group">
+                <select id="role" name="role" required class="floating-select">
+                    <option value="" disabled selected></option>
+                    <option value="agent">{{ t.role_options.agent }}</option>
+                    <option value="broker">{{ t.role_options.broker }}</option>
+                    <option value="stager">{{ t.role_options.stager }}</option>
+                    <option value="other">{{ t.role_options.other }}</option>
+                </select>
+                <label for="role" class="floating-label">{{ t.role_label }}</label>
+            </div>
+
+            <input type="hidden" name="language" value="{{ page.lang }}">
+            <input type="text" name="_gotcha" style="display:none">
+
+            <button type="submit" class="btn btn-primary btn-block">{{ t.submit_btn }}</button>
+        </form>
+    </div>
+</section>

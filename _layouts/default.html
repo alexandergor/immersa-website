@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'en' }}" dir="{{ page.dir | default: 'ltr' }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
+
+    <!-- Social Meta -->
+    <meta property="og:title" content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}">
+    <meta property="og:description" content="{{ page.description | default: site.description }}">
+    <meta property="og:image" content="{{ '/assets/images/og-image.png' | relative_url }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta name="twitter:card" content="summary_large_image">
+
+    {% seo %}
+</head>
+
+<body>
+    <div class="void-background-fx"></div>
+
+    <header class="site-header">
+        <div class="container header-container">
+            <a href="{{ '/' | relative_url }}{% if page.lang == 'he' %}he/{% endif %}" class="site-logo">
+                <img src="{{ '/assets/images/logo-primary.png' | relative_url }}" alt="{{ site.title }}"
+                    class="logo-img">
+            </a>
+
+            {% assign nav_t = site.data.translations[page.lang].nav %}
+            <nav class="site-nav">
+                <button class="nav-toggle" aria-expanded="false" aria-label="{{ nav_t.toggle_menu }}">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="{{ '/' | relative_url }}{% if page.lang == 'he' %}he/{% endif %}">{{ nav_t.home }}</a>
+                    </li>
+                    <li><a href="{{ '/' | relative_url }}{% if page.lang == 'he' %}he/{% endif %}about/">{{ nav_t.about
+                            }}</a></li>
+                    <li><a href="{{ '/' | relative_url }}{% if page.lang == 'he' %}he/{% endif %}waitlist/">{{
+                            nav_t.waitlist }}</a></li>
+                    <li class="lang-switcher">
+                        {% if page.lang == 'en' %}
+                        <a href="{{ '/he' | relative_url }}{{ page.url }}" class="lang-link">עברית</a>
+                        {% else %}
+                        <a href="{{ page.url | remove: '/he' | remove: 'he/' | prepend: '/' }}"
+                            class="lang-link">English</a>
+                        {% endif %}
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main id="main-content">
+        {{ content }}
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            {% assign foot_t = site.data.translations[page.lang].footer %}
+            <div class="stealth-indicator">
+                <span class="status-dot pulsing"></span>
+                <span>{{ foot_t.stealth }}</span>
+            </div>
+            <p class="copyright">&copy; {{ 'now' | date: '%Y' }} {{ site.title }}. {{ foot_t.rights }}</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        document.querySelector('.nav-toggle').addEventListener('click', function () {
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !expanded);
+            document.querySelector('.nav-menu').classList.toggle('is-open');
+        });
+    </script>
+</body>
+
+</html>
