@@ -12,6 +12,7 @@ en:
       stager: "Home Stager"
       other: "Other"
     submit_btn: "Get Early Access"
+    success_title: "Welcome to Immersa"
     success_message: "Thanks! We'll be in touch."
   nav:
     home: "Home"
@@ -39,6 +40,7 @@ he:
       stager: "הום סטייג׳ר"
       other: "אחר"
     submit_btn: "קבלו גישה מוקדמת"
+    success_title: "ברוכים הבאים לאימרסה"
     success_message: "תודה! נהיה בקשר."
   nav:
     home: "בית"

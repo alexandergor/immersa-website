@@ -10,7 +10,13 @@ layout: default
             <p class="page-subtitle lead">{{ page.heroSubtitle }}</p>
         </div>
 
-        <form action="https://formspree.io/f/mdalkbpa" method="POST" class="waitlist-form glass-panel">
+        <div id="form-success" class="form-success glass-panel" style="display: none;">
+            <div class="success-icon">✓</div>
+            <h3 class="success-title gradient-text">{{ site.data.translations[page.lang].form.success_title }}</h3>
+            <p class="success-message">{{ site.data.translations[page.lang].form.success_message }}</p>
+        </div>
+
+        <form id="waitlist-form" action="https://formspree.io/f/mdalkbpa" method="POST" class="waitlist-form glass-panel">
             {% assign t = site.data.translations[page.lang].form %}
 
             <div class="form-intro mb-4 text-center">
@@ -47,6 +53,7 @@ layout: default
 
             <input type="hidden" name="language" value="{{ page.lang }}">
             <input type="text" name="_gotcha" style="display:none">
+            <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
 
             <button type="submit" class="btn btn-primary btn-block">{{ t.submit_btn }}</button>
         </form>
