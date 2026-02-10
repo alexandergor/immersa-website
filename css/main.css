@@ -195,6 +195,10 @@ h2,
     align-items: center;
 }
 
+html[dir="rtl"] .header-container {
+    /* RTL naturally places flex items from right to left */
+}
+
 .site-logo {
     font-size: 1.5rem;
     font-weight: 700;
@@ -296,11 +300,6 @@ h2,
         justify-content: center;
     }
 
-    html[dir="rtl"] .nav-toggle {
-        margin-left: auto;
-        margin-right: 0;
-    }
-
     .nav-menu {
         position: fixed;
         top: 0;
@@ -317,12 +316,6 @@ h2,
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
         z-index: 1000;
-    }
-
-    html[dir="rtl"] .nav-menu {
-        right: auto;
-        left: 0;
-        transform: translateX(-100%);
     }
 
     .nav-menu.is-open {
