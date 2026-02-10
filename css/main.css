@@ -298,12 +298,19 @@ html[dir="rtl"] .header-container {
         display: flex;
         align-items: center;
         justify-content: center;
+        margin-left: auto;
+    }
+
+    /* Hebrew RTL: hamburger on left */
+    html[dir="rtl"] .nav-toggle {
+        margin-left: 0;
+        margin-right: auto;
     }
 
     .nav-menu {
         position: fixed;
         top: 0;
-        left: 0;
+        right: 0;
         bottom: 0;
         width: 75%;
         max-width: 300px;
@@ -312,14 +319,25 @@ html[dir="rtl"] .header-container {
         flex-direction: column;
         padding: 5rem 2rem 2rem;
         gap: 1.5rem;
-        transform: translateX(-100%);
+        transform: translateX(100%);
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
         z-index: 1000;
-        height: 300px;
     }
 
     .nav-menu.is-open {
+        transform: translateX(0);
+    }
+
+    /* Hebrew RTL: slide from left to right */
+    html[dir="rtl"] .nav-menu {
+        right: auto;
+        left: 0;
+        transform: translateX(-100%);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    html[dir="rtl"] .nav-menu.is-open {
         transform: translateX(0);
     }
 
