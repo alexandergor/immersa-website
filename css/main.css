@@ -236,7 +236,7 @@ html[dir="rtl"] .header-container {
     width: 40px;
     height: 40px;
     position: relative;
-    z-index: 110;
+    z-index: 1100;
 }
 
 .hamburger {
@@ -320,17 +320,6 @@ html[dir="rtl"] .header-container {
     }
 
     .nav-menu.is-open {
-        transform: translateX(0);
-    }
-
-    html[dir="rtl"] .nav-menu {
-        left: 0;
-        right: auto;
-        transform: translateX(-100%);
-        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
-    }
-
-    html[dir="rtl"] .nav-menu.is-open {
         transform: translateX(0);
     }
 
