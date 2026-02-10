@@ -259,13 +259,19 @@
                             // Update button text
                             submitBtn.textContent = t.sending;
                             
-                            // Submit form without g-recaptcha-response field
-                            formData.delete('g-recaptcha-response');
+                            // Convert form data to JSON for Formspree AJAX
+                            var formObj = {};
+                            formData.forEach(function(value, key) {
+                                formObj[key] = value;
+                            });
                             
-                            // Submit form
+                            // Submit as JSON
                             return fetch(form.action, {
                                 method: 'POST',
-                                body: formData
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(formObj)
                             });
                         })
                         .then(function(response) {
@@ -299,10 +305,20 @@
                 } else {
                     // Fallback if reCAPTCHA not loaded
                     submitBtn.textContent = t.sending;
-                    formData.delete('g-recaptcha-response');
+                    
+                    // Convert form data to JSON for Formspree AJAX
+                    var formObjFallback = {};
+                    formData.forEach(function(value, key) {
+                        formObjFallback[key] = value;
+                    });
+                    
+                    // Submit as JSON
                     fetch(form.action, {
                         method: 'POST',
-                        body: formData
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(formObjFallback)
                     })
                     .then(function(response) {
                         if (response.ok) {
