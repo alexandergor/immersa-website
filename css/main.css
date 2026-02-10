@@ -323,6 +323,7 @@ html[dir="rtl"] .header-container {
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
         z-index: 1000;
+        height: 300px;
     }
 
     .nav-menu.is-open {
