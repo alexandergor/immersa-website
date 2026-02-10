@@ -253,7 +253,7 @@
                     grecaptcha.ready(function() {
                         grecaptcha.execute('6LdqIWYsAAAAAOoe-2FeQQ6BA1-nImj5peDS7QMz', {action: 'submit'})
                         .then(function(token) {
-                            // Store token but don't add to form - Formspree handles reCAPTCHA separately
+                            // Add token to form data
                             console.log('reCAPTCHA token received:', token ? 'valid' : 'invalid');
                             
                             // Update button text
@@ -264,6 +264,9 @@
                             formData.forEach(function(value, key) {
                                 formObj[key] = value;
                             });
+                            
+                            // Add reCAPTCHA token
+                            formObj['g-recaptcha-response'] = token;
                             
                             // Submit as JSON
                             return fetch(form.action, {
@@ -303,16 +306,18 @@
                         });
                     });
                 } else {
-                    // Fallback if reCAPTCHA not loaded
+                    // Fallback if reCAPTCHA not loaded - remove any existing g-recaptcha fields
                     submitBtn.textContent = t.sending;
                     
                     // Convert form data to JSON for Formspree AJAX
                     var formObjFallback = {};
                     formData.forEach(function(value, key) {
-                        formObjFallback[key] = value;
+                        if (key !== 'g-recaptcha-response') {
+                            formObjFallback[key] = value;
+                        }
                     });
                     
-                    // Submit as JSON
+                    // Submit as JSON without reCAPTCHA
                     fetch(form.action, {
                         method: 'POST',
                         headers: {
