@@ -303,22 +303,33 @@ html[dir="rtl"] .header-container {
     .nav-menu {
         position: fixed;
         top: 0;
-        right: 0;
+        left: 0;
         bottom: 0;
         width: 75%;
         max-width: 300px;
-        background: var(--color-bg-surface);
+        background: #13111C;
         background-color: #13111C;
         flex-direction: column;
         padding: 5rem 2rem 2rem;
         gap: 1.5rem;
-        transform: translateX(100%);
+        transform: translateX(-100%);
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
         z-index: 1000;
     }
 
     .nav-menu.is-open {
+        transform: translateX(0);
+    }
+
+    html[dir="rtl"] .nav-menu {
+        left: 0;
+        right: auto;
+        transform: translateX(-100%);
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+    }
+
+    html[dir="rtl"] .nav-menu.is-open {
         transform: translateX(0);
     }
 
